@@ -141,22 +141,41 @@
 
         // 13,最大と最小
         function getMaxAndMin(s) {
-            let str = s.split(" ");
-            let maxNum = 0;
-            let minNum = 0;
-            for (let i = 0; i < str.length+1; i++) {
-                if (maxNum < str[i]) {
-                    maxNum = str[i];
-                }else if (minNum > str[i]) {
-                    minNum = str[i];
-                }
-            }
-            return maxNum + " " + minNum;
+            let num = s.split(" ");
+
+            return Math.max.apply(null, num) + " " + Math.min.apply(null, num);;
         }
 
         console.log(getMaxAndMin("9 12 3 6 10")); // 12 3
         console.log(getMaxAndMin("1 1 2 2 3")); // 3 1
         console.log(getMaxAndMin("5 9 -1 10 2")); // 10 -1
+
+        // 14、文字列から N 番目
+        function getNthChar(s, n) {
+            return s.charAt(n - 1);
+        }
+
+        console.log(getNthChar("gsacademy", 3)); // a
+        console.log(getNthChar("abcdefg", 5)); // e
+        console.log(getNthChar("qwertyu", 1)); // q
+
+        // 15,文字列の一致
+        function isEqual(s, t) {
+            return s == t ? "Yes" : "No";
+        }
+
+        console.log(isEqual("gsacademy", "gsacademy")); // Yes
+        console.log(isEqual("JavaScript", "ジャバスク")); // No
+        console.log(isEqual("aaaaa", "aaaaaa")); // No
+
+        // 16,A の個数
+        function getNumberOfA(s) {
+            return s.split("A").length - 1;
+         }
+
+            console.log(getNumberOfA("GSACADEMY")); // 2
+            console.log(getNumberOfA("aAaAaA")); // 3
+            console.log(getNumberOfA("JavaScript")); // 0
 
     </script>
 </body>
