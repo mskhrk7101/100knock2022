@@ -171,11 +171,144 @@
         // 16,A の個数
         function getNumberOfA(s) {
             return s.split("A").length - 1;
+        }
+
+        console.log(getNumberOfA("GSACADEMY")); // 2
+        console.log(getNumberOfA("aAaAaA")); // 3
+        console.log(getNumberOfA("JavaScript")); // 0
+
+        // 17,表面積の計算
+        function getSurfaceArea(a) {
+            return a * a * 6;
+        }
+
+        console.log(getSurfaceArea(4)); // 96
+        console.log(getSurfaceArea(1)); // 6
+
+        // 18,三角形の内角の和
+        function getAngle(a, b) {
+            return 180 - a - b;
+        }
+
+        console.log(getAngle(30, 90)); // 60
+        console.log(getAngle(45, 45)); // 90
+
+        // 19,数字の出力
+        function zeroPadding3(n) {
+            return ("000" + n).slice(-3);
+        }
+
+        console.log(zeroPadding3(98)); // 098
+        console.log(zeroPadding3(2)); // 002
+
+        // 20,一週間の予定
+        function getPaidHolidays(s) {
+            let array = s.match(/no/g);
+            return array.length;
+        }
+
+        console.log(getPaidHolidays("yes yes yes yes no no yes")); // 2
+        console.log(getPaidHolidays("yes no no no no no yes")); // 5
+
+        // 21,n までの和
+        function getSum(n) {
+            let num = 0;
+            for (let i = 1; i < n + 1; i++) {
+                num += i;
+            }
+            return num;
+        }
+
+        console.log(getSum(10)); // 55
+        console.log(getSum(99)); // 4950
+
+        // 22,数字の桁数
+        function getNumberOfDigits(n) {
+            return n.toString().length;
+        }
+
+        console.log(getNumberOfDigits(100)); // 3
+        console.log(getNumberOfDigits(114514)); // 6
+
+        // 23,サイコロの裏面
+        function getBackSide(n) {
+            return 7 - n;
+        }
+
+        console.log(getBackSide(1)); // 6
+        console.log(getBackSide(3)); // 4
+
+        // 24,単位の変換
+        function convertToSeconds(n) {
+            return n * 60;
+        }
+
+        console.log(convertToSeconds(16)); // 960
+        console.log(convertToSeconds(3)); // 180
+
+        // 25,充電時間
+        function getTimeUntilFull(n) {
+            return 100 - n;
+        }
+
+        console.log(getTimeUntilFull(70)); // 30
+        console.log(getTimeUntilFull(25)); // 75
+
+        // 26,頭文字
+        function getInitialFromName(s) {
+            let array = s.split(" ");
+            let str = array[0].split("");
+            let str1 = array[1].split("");
+            return str[0] + "." + str1[0];
+        }
+
+        console.log(getInitialFromName("Dio Brando")); // D.B
+        console.log(getInitialFromName("Pannacotta Fugo")); // P.F
+        console.log(getInitialFromName("Gyro Zeppeli")); // G.Z
+
+        // 27,どれにしようかな
+        function choiceOfGod(n) {
+            if (21 % n == 0) {
+                return n;
+            } else {
+                return 21 % n;
+            }
+        }
+
+        console.log(choiceOfGod(4)); // 1
+        console.log(choiceOfGod(3)); // 3
+
+        // 28,日付のデータ
+        function formatYMD(s) {
+            let array = s.split(" ");
+            let yyyy = ("0000" + array[0]).slice(-4);
+            let mm = ("00" + array[1]).slice(-2);
+            let dd = ("00" + array[2]).slice(-2);
+            
+            return yyyy + "/" + mm + "/" + dd
+        }
+
+        console.log(formatYMD("2021 1 1")); // 2021/01/01
+        console.log(formatYMD("2020 10 10")); // 2020/10/10
+        console.log(formatYMD("794 11 29")); // 0794/11/29
+
+        // 29,アットマーク
+        function convertAtToAtMark(s) {
+            return s.replace(/at/g, '@')
          }
 
-            console.log(getNumberOfA("GSACADEMY")); // 2
-            console.log(getNumberOfA("aAaAaA")); // 3
-            console.log(getNumberOfA("JavaScript")); // 0
+            console.log(convertAtToAtMark("gsatcodeatquantity")); // gs@code@quantity
+            console.log(convertAtToAtMark("atatatjojoatatat")); // @@@jojo@@@
+
+        // 30,花粉症でつらい
+        function getNeedBox(m, n) {
+            return Math.ceil(n / m);
+         }
+
+            console.log(getNeedBox(7, 30)); // 5
+            console.log(getNeedBox(3, 100)); // 34
+            console.log(getNeedBox(7, 5)); // 1
+
 
     </script>
 </body>
