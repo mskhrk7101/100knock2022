@@ -284,7 +284,7 @@
             let yyyy = ("0000" + array[0]).slice(-4);
             let mm = ("00" + array[1]).slice(-2);
             let dd = ("00" + array[2]).slice(-2);
-            
+
             return yyyy + "/" + mm + "/" + dd
         }
 
@@ -295,20 +295,159 @@
         // 29,アットマーク
         function convertAtToAtMark(s) {
             return s.replace(/at/g, '@')
-         }
+        }
 
-            console.log(convertAtToAtMark("gsatcodeatquantity")); // gs@code@quantity
-            console.log(convertAtToAtMark("atatatjojoatatat")); // @@@jojo@@@
+        console.log(convertAtToAtMark("gsatcodeatquantity")); // gs@code@quantity
+        console.log(convertAtToAtMark("atatatjojoatatat")); // @@@jojo@@@
 
         // 30,花粉症でつらい
         function getNeedBox(m, n) {
             return Math.ceil(n / m);
+        }
+
+        console.log(getNeedBox(7, 30)); // 5
+        console.log(getNeedBox(3, 100)); // 34
+        console.log(getNeedBox(7, 5)); // 1
+
+        // 31,本棚選び
+        function canStoreBooks(s) {
+            let array = s.split(" ");
+            let cm = array[1] * array[2];
+            if (cm > array[0]) {
+                return "OK";
+            } else {
+                return "NG";
+            }
+        }
+
+        console.log(canStoreBooks("400 5 85")); // OK
+        console.log(canStoreBooks("500 4 70")); // NG
+
+        // 32,試合の回数
+        function calculateNumberOfGames(n) {
+            let count = 0;
+            for (let i = 1; i < n + 1; i++) {
+                for (let j = 1; j < n + 1; j++) {
+                    if (j > i) {
+                        count += 1;
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        console.log(calculateNumberOfGames(4)); // 6
+        console.log(calculateNumberOfGames(10)); // 45
+
+        // 33,連休の天気
+        function daysOfGoOut(s) {
+            let array = s.split(" ");
+            let count = 0;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] <= 30) {
+                    count += 1
+                }
+            }
+            return count;
+        }
+
+        console.log(daysOfGoOut("13 0 15 30 89 100 30")); // 5
+        console.log(daysOfGoOut("0 14 18 22 0 2 4")); // 7
+        console.log(daysOfGoOut("99 99 99 99 99 99 99")); // 0
+
+        // 34,正三角形かどうか
+        function isEquilateralTriangle(s) {
+            let array = s.split(" ");
+            return array[0] == array[1] && array[0] == array[2] ? "yes" : "no";
+        }
+
+        console.log(isEquilateralTriangle("10 10 10")); // yes
+        console.log(isEquilateralTriangle("3 4 5")); // No
+
+        // 35,天気の表示
+        function showWeather(n) {
+            if (n > 70) {
+                return "rainy";
+            } else if (n > 30) {
+                return "cloudy";
+            } else {
+                return "sunny";
+            }
+        }
+
+        console.log(showWeather(31)); // cloudy
+        console.log(showWeather(2)); // sunny
+        console.log(showWeather(71)); // rainy
+
+        //  36,はじめまして
+        function greet(s1, s2) {
+            return s2 == "M" ? "Hi, Mr." + s1 : "Hi, Ms." + s1;
+        }
+
+        console.log(greet("Stroheim", "M")); // Hi, Mr.Stroheim
+        console.log(greet("Trish", "F")); // Hi, Ms.Trish
+
+        // 37,通知票
+        function convertNumberToAlphabet(s) {
+            let array = s.split("");
+            let result = "";
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == 5) {
+                    result += "A";
+                }
+                if (array[i] == 4) {
+                    result += "B";
+                }
+                if (array[i] == 3) {
+                    result += "C";
+                }
+                if (array[i] == 2) {
+                    result += "D";
+                }
+                if (array[i] == 1) {
+                    result += "E";
+                }
+            }
+            return result;
+        }
+
+        console.log(convertNumberToAlphabet("53342")); // ACCBD
+        console.log(convertNumberToAlphabet("22222")); // DDDDD
+        console.log(convertNumberToAlphabet("51111")); // AEEEE
+
+        // 38,不思議なタマゴ
+        function getNumberOfSteps(s) {
+            let array = s.split(" ");
+            return Math.max(...array);
+        }
+
+        console.log(getNumberOfSteps("1 2 5")); // 5
+        console.log(getNumberOfSteps("2 5 5")); // 5
+        console.log(getNumberOfSteps("1 2 1")); // 2
+
+        // 39,台風の間隔
+        function getInterval(s) {
+            let array = s.split(" ");
+            let num = "";
+            for (let i = 0; i < array.length - 1; i++) {
+                let days = array[i + 1] - array[i];
+                num += days + " ";
+            }
+            return num;
+        }
+
+        console.log(getInterval("5 8 19 25 31")); // 3 11 6 6
+        console.log(getInterval("2 3 7 9 28")); // 1 4 2 19
+
+        // 40,◯◯ の秋
+        function getAutumn(s) {
+            return  s.replace(/noaki/g, "");
          }
 
-            console.log(getNeedBox(7, 30)); // 5
-            console.log(getNeedBox(3, 100)); // 34
-            console.log(getNeedBox(7, 5)); // 1
-
+        console.log(getAutumn("codenoaki")); // code
+        console.log(getAutumn("dokusyo")); // dokusyo
+        console.log(getAutumn("javascriptnoaki")); // javascript
 
     </script>
 </body>
