@@ -524,21 +524,21 @@
         //     for (let i = 0; i < array.length; i++) {
         //         let ans = array[i];
         //         let num = 0;
-
         //         for (let j = 0; j < array[i]; j++) {
         //             if (ans % 2 == 0) {
-        //                 ans = Math.ceil(ans / 2);
+        //                 num += ans / 2;
+        //                 ans = Math.ceil(num);
+        //                 console.log(ans);
         //             }
-        //             else {
-        //                 num += ans;
-        //                 console.log(num);
-        //                 ans1[i] = Math.abs(array[i] - num);
-        //                 break;
-        //             }
+        //             // else {
+        //             //     num += ans;
+        //             //     ans1[i] = Math.abs(array[i] - num);
+        //             //     break;
+        //             // }
         //         }
-
+        //         console.log("----------");
         //     }
-        // return ans1;
+        //     return ans1;
         // }
 
         // console.log(isPerfectNumber("28 16 777")); // perfect nearly neither
@@ -595,28 +595,53 @@
             let array = s.split(" ");
             let dd = array[0].split("/").map(Number);
             let time = array[1].split(":");
-            if(time[0] >= 24){
+            if (time[0] >= 24) {
                 dd[1] += Math.round(time[0] / 24);
                 time[0] = time[0] % 24;
                 time[0] = ("00" + time[0]).slice(-2);
             }
             return dd[0] = ("00" + dd[0]).slice(-2) + "/" + dd[1] + " " + time[0] + ":" + time[1];
-         }
+        }
 
-            console.log(formatHour("01/27 24:30")); // 01/28 00:30
-            console.log(formatHour("02/31 73:59")); // 02/34 01:59
-            console.log(formatHour("12/31 00:00")); // 12/31 00:00
-            console.log(formatHour("12/31 25:01")); // 12/32 01:01
+        console.log(formatHour("01/27 24:30")); // 01/28 00:30
+        console.log(formatHour("02/31 73:59")); // 02/34 01:59
+        console.log(formatHour("12/31 00:00")); // 12/31 00:00
+        console.log(formatHour("12/31 25:01")); // 12/32 01:01
 
         // 69,コーヒー割引キャンペーン
         function getCostForFreeCoffee(s) {
-            let array = s.split(" ");
-            let discountRate = array[1] / 100;
-            return discountRate;
-         }
+            let array = s.split(" ").map(Number);
+            let discountRate = 1 - array[1] / 100;
+            let all = 0;
+            for (price = array[0]; price > 0;) {
+                price = Math.floor(price * discountRate);
+                all += price;
+            }
+            return all + array[0];
+        }
 
-            console.log(getCostForFreeCoffee("300 50")); // 596
-            console.log(getCostForFreeCoffee("1000 99")); // 1010
+
+
+        console.log(getCostForFreeCoffee("300 50")); // 596
+        console.log(getCostForFreeCoffee("1000 99")); // 1010
+
+        // 70,エレベーター
+        function getElevatorMove(s) {
+            let array = s.split(" ").map(Number);
+            let count = 1;
+            for (let i = 0; i < array.length - 1; i++) {
+                if (i == 0) {
+                    let ans = count - array[i];
+                    count = Math.abs(ans);
+                }
+                let ans2 = array[i] - (array[i + 1]);
+                count += Math.abs(ans2);
+            }
+            return count;
+        }
+
+        console.log(getElevatorMove("3 1 4")); // 7
+        console.log(getElevatorMove("17 28 11 62 64 4 7 17")); // 170
 
 
 
