@@ -643,6 +643,75 @@
         console.log(getElevatorMove("3 1 4")); // 7
         console.log(getElevatorMove("17 28 11 62 64 4 7 17")); // 170
 
+        // 71,ゾロ目の日付
+        function isSingleNumber(s) {
+            let array = s.replace(" ", "");
+            for (let i = 0; i < array.length - 1; i++) {
+                if (array[i] != array[i + 1]) {
+                    return "No";
+                }
+            }
+            return "Yes";
+        }
+
+        console.log(isSingleNumber("11 1")); // Yes
+        console.log(isSingleNumber("11 11")); // Yes
+        console.log(isSingleNumber("12 11")); //  No
+
+        // 72,花見の準備
+        function judgeCheapSheet(s) {
+            let array = s.split(",");
+            let array2 = [array[0].split(" "), array[1].split(" ").map(Number)];
+            let price1 =
+                ((array2[0][0]) * (array2[0][1])) / (array2[0][2]);
+
+            let price2 =
+                ((array2[1][0]) * (array2[1][1])) / (array2[1][2]);
+
+            if (price1 > price2) {
+                return array[0];
+            } else if (price1 < price2) {
+                return array[1];
+            } else {
+                return "DRAW";
+            }
+        }
+
+        console.log(judgeCheapSheet("5 18 1000,12 21 3000")); // 5 18 1000
+        console.log(judgeCheapSheet("5 5 1800,5 10 3600")); // DRAW
+
+        // 73,下一桁はいくつ
+        function getLastNumber(s) {
+            let array = s.split(" ").map(Number);
+            let ans = 0;
+            for (let i = 0; i < array.length; i++) {
+                ans += array[i];
+            }
+            return ('0' + ans).slice(-1);
+        }
+
+        console.log(getLastNumber("1 9 8 9 12")); // 9
+        console.log(getLastNumber("1 1 1 1 6")); // 0
+
+        // 74,門松の作成
+        function getAllLength(n) {
+            n += ((n * 5) / 3) + ((n * 7) / 3);
+
+            return n;
+        }
+
+        console.log(getAllLength(60)); // 300
+        console.log(getAllLength(9)); // 45
+
+        // 75,禁止ワード
+        function hasNgWord(s) {
+            let array = s.split(" ");
+            return array[1].indexOf(array[0]) == -1 ?  array[1] : "NG";
+         }
+
+            console.log(hasNgWord("ngword thisisngword")); // NG
+            console.log(hasNgWord("ngword gsprogramming")); // gsprogramming
+
 
 
     </script>
