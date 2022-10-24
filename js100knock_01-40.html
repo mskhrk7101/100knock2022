@@ -142,7 +142,6 @@
         // 13,最大と最小
         function getMaxAndMin(s) {
             let num = s.split(" ");
-
             return Math.max.apply(null, num) + " " + Math.min.apply(null, num);;
         }
 
@@ -203,8 +202,7 @@
 
         // 20,一週間の予定
         function getPaidHolidays(s) {
-            let array = s.match(/no/g);
-            return array.length;
+            return s.match(/no/g).length;
         }
 
         console.log(getPaidHolidays("yes yes yes yes no no yes")); // 2
@@ -257,9 +255,7 @@
         // 26,頭文字
         function getInitialFromName(s) {
             let array = s.split(" ");
-            let str = array[0].split("");
-            let str1 = array[1].split("");
-            return str[0] + "." + str1[0];
+            return array[0][0] + "." + array[1][0];
         }
 
         console.log(getInitialFromName("Dio Brando")); // D.B
@@ -281,11 +277,7 @@
         // 28,日付のデータ
         function formatYMD(s) {
             let array = s.split(" ");
-            let yyyy = ("0000" + array[0]).slice(-4);
-            let mm = ("00" + array[1]).slice(-2);
-            let dd = ("00" + array[2]).slice(-2);
-
-            return yyyy + "/" + mm + "/" + dd
+            return ("0000" + array[0]).slice(-4) + "/" + ("00" + array[1]).slice(-2) + "/" + ("00" + array[2]).slice(-2);
         }
 
         console.log(formatYMD("2021 1 1")); // 2021/01/01
@@ -313,11 +305,8 @@
         function canStoreBooks(s) {
             let array = s.split(" ");
             let cm = array[1] * array[2];
-            if (cm > array[0]) {
-                return "OK";
-            } else {
-                return "NG";
-            }
+            return  cm > array[0] ?  "OK": "NG";
+           
         }
 
         console.log(canStoreBooks("400 5 85")); // OK

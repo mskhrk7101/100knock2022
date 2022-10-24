@@ -16,11 +16,7 @@
             array = array.map(Number)
             let ans = 0;
             for (let i = 0; i < array.length; i++) {
-                if (array[i] > 5) {
-                    ans += 5;
-                } else {
-                    ans += array[i];
-                }
+                array[i] > 5 ? ans += 5 : ans += array[i]
             }
             return ans;
         }
@@ -204,10 +200,6 @@
             array.sort(compareNumbers);
             return array.join(" ");
 
-            // for(let i in array) {
-            //     ans += array[i] + " ";
-            // }
-            // return ans;
         }
         function compareNumbers(a, b) {
             return a - b;
@@ -242,9 +234,7 @@
 
         // 56,ランダムに挨拶
         function randomGreet(a, b, c) {
-
             return [a, b, c][Math.floor(Math.random() * randomGreet.length)];
-
         }
         console.log(randomGreet("おはよう", "こんにちは", "こんばんは")); // おはようorこんにちはorこんばんは
         console.log(randomGreet("Hi!", "Hello!", "Bye!")); // Hi! or Hello! or Bye!
@@ -252,11 +242,7 @@
         // 57,オブジェクトの並び替え
         function sortObject(obj) {
             obj.sort((a, b) => {
-                if (a.id < b.id) {
-                    return -1;
-                } else {
-                    return 1;
-                }
+                a.id < b.id ? -1 : 1;
             });
             answer = [];
             obj.forEach((x) => {
@@ -309,11 +295,7 @@
         // 58,名前しかいらん
         function createNameArray(array) {
             array.sort((a, b) => {
-                if (a.age < b.age) {
-                    return -1;
-                } else {
-                    return 1;
-                }
+                 a.age < b.age ? -1 : 1;
             });
 
             answer = [];
@@ -367,9 +349,7 @@
         function filterUnder25Array(array) {
             answer = [];
             array.forEach((x) => {
-                if (x.age < 25) {
-                    answer.push(x.id);
-                }
+                x.age < 25 ? answer.push(x.id) : "";
             });
             return answer;
 
@@ -473,11 +453,8 @@
         // 61,トランプ占い
         function divinationCheat(s) {
             let array = s.split(" ");
-            if (array[0] == "J" && array[1] == "J") {
-                array[1] = "Q";
-            }
+            array[0] == "J" && array[1] == "J" ? array[1] = "Q" : "";
             return array.join(" ");
-
         }
 
         console.log(divinationCheat("K Q")); // K Q
@@ -517,32 +494,31 @@
         console.log(convertLeet("GSACADEMY")); // 654C4D3MY
 
         // 65,完全数とほぼ完全数
-        // function isPerfectNumber(s) {
-        //     let array = s.split(" ");
-        //     array = array.map(Number);
-        //     let ans1 = [];
-        //     for (let i = 0; i < array.length; i++) {
-        //         let ans = array[i];
-        //         let num = 0;
-        //         for (let j = 0; j < array[i]; j++) {
-        //             if (ans % 2 == 0) {
-        //                 num += ans / 2;
-        //                 ans = Math.ceil(num);
-        //                 console.log(ans);
-        //             }
-        //             // else {
-        //             //     num += ans;
-        //             //     ans1[i] = Math.abs(array[i] - num);
-        //             //     break;
-        //             // }
-        //         }
-        //         console.log("----------");
-        //     }
-        //     return ans1;
-        // }
+        function isPerfectNumber(s) {
+            let array = s.split(" ").map(Number);
+            let ansArray = [];
+            answer = [];
+            for (let i = 0; i < array.length; i++) {
+                let total = 0;
+                for (let k = 1; k < array[i]; k++) {
+                    array[i] % k == 0 ? total += k : "";
+                }
+                ansArray[i] = total;
+            }
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] == ansArray[i]) {
+                    answer[i] = "perfect";
+                } else if (Math.abs(array[i] - ansArray[i]) == 1) {
+                    answer[i] = "nearly";
+                } else {
+                    answer[i] = "neither";
+                }
+            }
+            return answer.join(" ");
+        }
 
-        // console.log(isPerfectNumber("28 16 777")); // perfect nearly neither
-        // console.log(isPerfectNumber("3 4 5 6")); // neither nearly neither perfect
+        console.log(isPerfectNumber("28 16 777")); // perfect nearly neither
+        console.log(isPerfectNumber("3 4 5 6")); // neither nearly neither perfect
 
         // 66,単語テストの採点
         function calculatePoint(s) {
@@ -555,14 +531,10 @@
                     ans += 2;
                 } else if (str[0].length == str[1].length) {
                     for (let j = 0; j < str[0].length; j++) {
-                        if (str[0][j] == str[1][j]) {
-                            count++
-                        }
+                        str[0][j] == str[1][j] ?  count++ : "";
                     }
                 }
-                if (count == str[0].length || count == str[0].length - 1) {
-                    ans++
-                }
+                count == str[0].length || count == str[0].length - 1 ? ans++ : "";
             }
             return ans;
         }
@@ -706,13 +678,94 @@
         // 75,禁止ワード
         function hasNgWord(s) {
             let array = s.split(" ");
-            return array[1].indexOf(array[0]) == -1 ?  array[1] : "NG";
-         }
+            return array[1].indexOf(array[0]) == -1 ? array[1] : "NG";
+        }
 
-            console.log(hasNgWord("ngword thisisngword")); // NG
-            console.log(hasNgWord("ngword gsprogramming")); // gsprogramming
+        console.log(hasNgWord("ngword thisisngword")); // NG
+        console.log(hasNgWord("ngword gsprogramming")); // gsprogramming
 
+        // 76,洗濯物と砂ぼこり
+        function canDry(s) {
+            let array = s.split(" ");
+            if ((array[0] >= 25 || array[1] >= 40) && (array[0] < 25 && array[1] > 40)) {
+                return "No";
+            }
+            return "Yes";
+        }
 
+        console.log(canDry("25 50")); // Yes
+        console.log(canDry("10 20")); // Yes
+        console.log(canDry("20 50")); // No
+
+        // 77,カード並べ
+        function getBestScore(s) {
+            let array = s.split(" ").map(Number);
+            let sortArray = array.sort((prev, next) => prev - next).map(String);
+            sortArray = [sortArray[3] + sortArray[1], sortArray[2] + sortArray[0]].map(Number);
+            return sortArray[0] + sortArray[1];
+        }
+
+        console.log(getBestScore("2 9 3 8")); // 175
+        console.log(getBestScore("7 8 7 7")); // 164
+
+        // 78,ログのフィルター
+        function filterLogByKeyword(s) {
+            let array = s.split(",");
+            let words = array[1].split(" ");
+            let ans = [];
+            for (let i = 0; i < words.length; i++) {
+                words[i].indexOf(array[0]) != -1 ? ans += words[i] + " " : "";
+            }
+            if (ans.length == 0) {
+                return "None";
+            }
+            return ans;
+
+        }
+
+        console.log(
+            filterLogByKeyword("gs,gsacademytokyo javascript gsacademyfukuoka gsbase")
+        ); // gsacademytokyo gsacademyfukuoka gsbase
+        console.log(
+            filterLogByKeyword("script,javascript typescript googleappscript java")
+        ); // javascript typescript googleappscript
+        console.log(
+            filterLogByKeyword(
+                "dio,Giorno Bucciarati Abbacchio Mista Narancia Fugo Trish"
+            )
+        ); // None
+
+        // 79,メールアドレス認証
+        function isValidEmail(s) {
+            regexp = /^[a-zA-Z0-9_+-]+(\.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
+            return regexp.test(s);
+        }
+
+        console.log(isValidEmail("ccc@aaa.com")); // true
+        console.log(isValidEmail("c@cc@aaa.com")); // false
+        console.log(isValidEmail("cc c@aaa.com")); // false
+        console.log(isValidEmail("cc.c@aaacom")); // false
+        console.log(isValidEmail("cc.c@aaa.com")); // true
+        console.log(isValidEmail("@aaa.com")); // false
+
+        // 80,フィボナッチ数列
+        // https://ja.javascript.info/task/fibonacci-numbers
+        function getFibonacciNth(s) {
+            // return s <= 1 ? s : getFibonacciNth(s - 1) + getFibonacciNth(s - 2);(止まらん…)
+            let a = 1;
+            let b = 1;
+            for (let i = 3; i <= s; i++) {
+                let c = a + b;
+                a = b;
+                b = c;
+            }
+            return b;
+
+        }
+        console.log(getFibonacciNth(1)); // 1
+        console.log(getFibonacciNth(5)); // 5
+        console.log(getFibonacciNth(10)); // 55
+        console.log(getFibonacciNth(90)); // 2880067194370816120
 
     </script>
 
