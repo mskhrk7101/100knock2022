@@ -145,13 +145,9 @@
         // 51,プロフィールの表示
         function outputProfile(obj) {
             let gender = "";
-            if (obj["gender"] == "male") {
-                return "彼の名前は" + obj["name"] + "で" + obj["age"] + "歳です";
-            } else if (obj["gender"] == "female") {
-                return "彼女の名前は" + obj["name"] + "で" + obj["age"] + "歳です";
-            } else {
-                return "情報がありません";
-            }
+            return obj["gender"] == "male" ? "彼の名前は" + obj["name"] + "で" + obj["age"] + "歳です"
+                : obj["gender"] == "female" ? "彼女の名前は" + obj["name"] + "で" + obj["age"] + "歳です"
+                    : "情報がありません";
         }
         const taro = {
             name: "Taro",
@@ -295,7 +291,7 @@
         // 58,名前しかいらん
         function createNameArray(array) {
             array.sort((a, b) => {
-                 a.age < b.age ? -1 : 1;
+                a.age < b.age ? -1 : 1;
             });
 
             answer = [];
@@ -531,7 +527,7 @@
                     ans += 2;
                 } else if (str[0].length == str[1].length) {
                     for (let j = 0; j < str[0].length; j++) {
-                        str[0][j] == str[1][j] ?  count++ : "";
+                        str[0][j] == str[1][j] ? count++ : "";
                     }
                 }
                 count == str[0].length || count == str[0].length - 1 ? ans++ : "";
@@ -640,13 +636,7 @@
             let price2 =
                 ((array2[1][0]) * (array2[1][1])) / (array2[1][2]);
 
-            if (price1 > price2) {
-                return array[0];
-            } else if (price1 < price2) {
-                return array[1];
-            } else {
-                return "DRAW";
-            }
+            return price1 > price2 ? array[0] : price1 < price2 ? array[1] : "DRAW";
         }
 
         console.log(judgeCheapSheet("5 18 1000,12 21 3000")); // 5 18 1000
@@ -687,10 +677,7 @@
         // 76,洗濯物と砂ぼこり
         function canDry(s) {
             let array = s.split(" ");
-            if ((array[0] >= 25 || array[1] >= 40) && (array[0] < 25 && array[1] > 40)) {
-                return "No";
-            }
-            return "Yes";
+            return (array[0] >= 25 || array[1] >= 40) && (array[0] < 25 && array[1] > 40) ? "No" : "Yes";
         }
 
         console.log(canDry("25 50")); // Yes
@@ -716,10 +703,7 @@
             for (let i = 0; i < words.length; i++) {
                 words[i].indexOf(array[0]) != -1 ? ans += words[i] + " " : "";
             }
-            if (ans.length == 0) {
-                return "None";
-            }
-            return ans;
+            return ans.length == 0 ? "None" : ans;
 
         }
 
