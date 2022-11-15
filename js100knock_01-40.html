@@ -12,13 +12,7 @@
     <script>
         // 1,数の比較
         function compareNumbers(a, b) {
-            if (a > b) {
-                return a;
-            } else if (a < b) {
-                return b;
-            } else {
-                return "eq";
-            }
+            return a > b ? a : a < b ? b : "eq";
         }
 
         console.log(compareNumbers(2, 5)); // 5
@@ -27,16 +21,9 @@
 
         // 2,単位の計算
         function convertToMm(n, s) {
-            if (s == "km") {
-                return n * 1000000;
-            } else if (s == "m") {
-                return n * 1000;
-            } else if (s == "cm") {
-                return n * 10;
-            } else {
-                return "error";
-            }
+            return s == "km" ? n * 1000000 : s == "m" ? n * 1000 : s == "cm" ? n * 10 : "error";
         }
+
         console.log(convertToMm(1, "km")); // 1000000
         console.log(convertToMm(54, "km")); // 54000000
         console.log(convertToMm(2, "cm")); // 20
@@ -62,8 +49,7 @@
 
         // 5,何番目？
         function judgeTh(c) {
-            const array = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            return array.indexOf(c) + 1;
+            return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(c) + 1;
         }
 
         console.log(judgeTh("C")); // 3
@@ -264,11 +250,7 @@
 
         // 27,どれにしようかな
         function choiceOfGod(n) {
-            if (21 % n == 0) {
-                return n;
-            } else {
-                return 21 % n;
-            }
+            return 21 % n == 0 ? n : 21 % n;
         }
 
         console.log(choiceOfGod(4)); // 1
@@ -305,8 +287,8 @@
         function canStoreBooks(s) {
             let array = s.split(" ");
             let cm = array[1] * array[2];
-            return  cm > array[0] ?  "OK": "NG";
-           
+            return cm > array[0] ? "OK" : "NG";
+
         }
 
         console.log(canStoreBooks("400 5 85")); // OK
@@ -356,13 +338,7 @@
 
         // 35,天気の表示
         function showWeather(n) {
-            if (n > 70) {
-                return "rainy";
-            } else if (n > 30) {
-                return "cloudy";
-            } else {
-                return "sunny";
-            }
+            return n > 70 ? "rainy" : n > 30 ? "cloudy" : "sunny";
         }
 
         console.log(showWeather(31)); // cloudy
@@ -382,21 +358,9 @@
             let array = s.split("");
             let result = "";
             for (let i = 0; i < array.length; i++) {
-                if (array[i] == 5) {
-                    result += "A";
-                }
-                if (array[i] == 4) {
-                    result += "B";
-                }
-                if (array[i] == 3) {
-                    result += "C";
-                }
-                if (array[i] == 2) {
-                    result += "D";
-                }
-                if (array[i] == 1) {
-                    result += "E";
-                }
+                array[i] == 5 ? result += "A" : array[i] == 4 ? result += "B" : array[i] == 3 ? result += "C" : array[i] == 2 ? result += "D" : result += "E";
+
+
             }
             return result;
         }
@@ -431,8 +395,8 @@
 
         // 40,◯◯ の秋
         function getAutumn(s) {
-            return  s.replace(/noaki/g, "");
-         }
+            return s.replace(/noaki/g, "");
+        }
 
         console.log(getAutumn("codenoaki")); // code
         console.log(getAutumn("dokusyo")); // dokusyo
